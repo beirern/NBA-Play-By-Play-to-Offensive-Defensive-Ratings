@@ -2,19 +2,19 @@ library(dplyr)
 
 # Get the Data
 game_lineup <-
-  read.csv('../NBA-Hackathon/Basketball Analytics/data/Game_Lineup.txt',
+  read.csv('./data/Game_Lineup.txt',
            sep = '\t',
            stringsAsFactors = FALSE)
 play_by_play <-
-  read.csv('../NBA-Hackathon/Basketball Analytics/data/Play_by_Play.txt',
+  read.csv('./data/Play_by_Play.txt',
            sep = '\t',
            stringsAsFactors = FALSE)
-event_codes <-
-  read.csv(
-    '../NBA-Hackathon/Basketball Analytics/data/Event_Codes.txt',
-    sep = '\t',
-    stringsAsFactors = FALSE
-  )
+#event_codes <-
+#  read.csv(
+#    './data/Event_Codes.txt',
+#    sep = '\t',
+#    stringsAsFactors = FALSE
+#  )
 
 all_games <- unique(play_by_play$Game_id)
 
