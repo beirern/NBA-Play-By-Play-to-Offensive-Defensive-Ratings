@@ -9,7 +9,7 @@ game_lineup <-
            stringsAsFactors = FALSE)
 play_by_play <-
   #../NBA-Hackathon/Basketball Analytics/data/Play_by_Play.txt
-  read.csv('./Play_by_Play.txt',
+  read.csv('./data/Play_by_Play.txt',
            sep = '\t',
            stringsAsFactors = FALSE)
 
@@ -189,6 +189,18 @@ for (i in 1:length(all_games)) {
           if (quarter_play_by_play[row + count, 'Option1'] == 1 &&
               quarter_play_by_play[row - 1, 'Event_Msg_Type'] != 1) {
             one_quarter <- add_poss(one_quarter, team_id, quarter_lineup)
+          } else {
+            # Gets the player ID of who took the shot
+            pid <- quarter_play_by_play[row + count, 'Person1']
+            # Gets team ID of the player who took the shot
+            tid <-
+              quarter_lineup$Team_id[quarter_lineup$Person_id == pid]
+            # 
+            if (length(tid) != 0) {
+              if (tid != quarter_play_by_play[row, 'Team_id']) {
+                one_quarter <- add_poss(one_quarter, team_id, quarter_lineup)
+              }
+            }
           }
           # Loop through all the lines that were in between Free Throws.
           # Only subs can happen in between free throws therefore skips any thing else (Timeout, Stoppage, etc)
