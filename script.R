@@ -4,13 +4,13 @@ library(dplyr)
 # Get the Data
 game_lineup <-
   read.csv(
-    './Game_Lineup.txt',
+    './data/Game_Lineup.txt',
     sep = '\t',
     stringsAsFactors = FALSE
   )
 play_by_play <-
   read.csv(
-    './Play_by_Play.txt',
+    './data/Play_by_Play.txt',
     sep = '\t',
     stringsAsFactors = FALSE
   )
@@ -530,4 +530,4 @@ for (i in 1:length(all_games)) {
     )
 }
 
-write.csv(final_data, 'SuperSonics_Q1_BBALL.csv', row.names = FALSE)
+write.csv(final_data, 'Results.csv', row.names = FALSE)
